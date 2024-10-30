@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stroke Disease Prediction Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 20px;
+        }
+        .form-container {
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        h1, h2 {
+            color: #333333;
+        }
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+        .form-group label {
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        .form-group select, .form-group input {
+            padding: 8px;
+            border: 1px solid #cccccc;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        button {
+            background-color: #007bff;
+            color: #ffffff;
+            border: none;
+            padding: 12px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        /* Style for the scrollable table */
+        .table-container {
+            overflow-x: auto;
+            margin-top: 20px;
+            border: 1px solid #cccccc;
+            border-radius: 5px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h1>Stroke Disease Prediction Form</h1>
+
+        <!-- Form for single input prediction -->
+        <h2>Single Input Prediction:</h2>
+        <form action="/predict_single" method="POST">
+            <div class="form-grid">
+                <div class="form-group">
+                    <label for="gender">Gender:</label>
+                    <select id="gender" name="gender" required>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="age">Age:</label>
+                    <input type="number" id="age" name="age" min="0" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="hypertension">Hypertension:</label>
+                    <select id="hypertension" name="hypertension" required>
+                        <option value="0">No</option>
+                        <option value="1">Yes</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="heart_disease">Heart Disease:</label>
+                    <select id="heart_disease" name="heart_disease" required>
+                        <option value="0">No</option>
+                        <option value="1">Yes</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="ever_married">Ever Married:</label>
+                    <select id="ever_married" name="ever_married" required>
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="Residence_type">Residence Type:</label>
+                    <select id="Residence_type" name="Residence_type" required>
+                        <option value="Urban">Urban</option>
+                        <option value="Rural">Rural</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="avg_glucose_level">Average Glucose Level:</label>
+                    <input type="number" id="avg_glucose_level" name="avg_glucose_level" step="0.01" min="0" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="bmi">BMI:</label>
+                    <input type="number" id="bmi" name="bmi" step="0.1" min="0" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="work_type_Govt_job">Work Type - Govt Job:</label>
+                    <select id="work_type_Govt_job" name="work_type_Govt_job" required>
+                        <option value="0">No</option>
+                        <option value="1">Yes</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="work_type_Private">Work Type - Private:</label>
+                    <select id="work_type_Private" name="work_type_Private" required>
+                        <option value="0">No</option>
+                        <option value="1">Yes</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="work_type_Self-employed">Work Type - Self-employed:</label>
+                    <select id="work_type_Self-employed" name="work_type_Self-employed" required>
+                        <option value="0">No</option>
+                        <option value="1">Yes</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="work_type_children">Work Type - Children:</label>
+                    <select id="work_type_children" name="work_type_children" required>
+                        <option value="0">No</option>
+                        <option value="1">Yes</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="smoking_status">Smoking Status:</label>
+                    <select id="smoking_status" name="smoking_status" required>
+                        <option value="unknown">Unknown</option>
+                        <option value="formerly_smoked">Formerly Smoked</option>
+                        <option value="never_smoked">Never Smoked</option>
+                        <option value="smokes">Smokes</option>
+                    </select>
+                </div>
+            </div>
+
+            <button type="submit">Submit Single Prediction</button>
+        </form>
+
+        <br><br>
+
+        <!-- Form for CSV upload batch prediction -->
+        <h2>Batch Prediction (CSV):</h2>
+        <form action="/predict_csv" method="POST" enctype="multipart/form-data">
+            <h4>Upload CSV file for batch prediction:</h4>
+            <input type="file" name="file" accept=".csv" required><br><br>
+
+            <button type="submit">Submit CSV for Prediction</button>
+        </form>
+
+        <br>
+        <h2>Prediction Result:</h2>
+        <div class="table-container">
+            {{ prediction_result|safe }}
+        </div>
+
+        <!-- Display the bar graph if available -->
+        {% if plot_url %}
+            <h2>Stroke Prediction Distribution:</h2>
+            <img src="data:image/png;base64,{{ plot_url }}" alt="Bar Graph">
+        {% endif %}
+    </div>
+</body>
+</html>
